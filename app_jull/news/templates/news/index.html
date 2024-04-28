@@ -1,0 +1,13 @@
+{% extends "news/base_form.html"%}
+
+{% block content %}
+
+<div>
+<h2>Latest news</h2>    
+{% comment %} {% for article in articles%}
+<div itemscope="" itemtype="http://schema.org/CreativeWork">
+        <span >{{article.title}}</span>
+{% endfor %} {% endcomment %}
+</div>
+
+{% endblock %}
