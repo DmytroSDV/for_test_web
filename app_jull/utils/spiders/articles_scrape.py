@@ -7,13 +7,13 @@ from itemadapter import ItemAdapter
 from scrapy.crawler import CrawlerProcess
 from scrapy.item import Item, Field
 
-from celery import shared_task
-
 
 sys.path.append(os.path.abspath(os.path.join(os.path.dirname(__file__), "..", "..")))
 os.environ.setdefault("DJANGO_SETTINGS_MODULE", "app_jull.settings")
 django.setup()
 
+
+from app_jull.celery import app
 
 ARTICLES_NEWS_FILE = os.path.join(
     os.path.dirname(__file__), "..", "scrapped_info", "articles_news.json"
@@ -98,7 +98,7 @@ class ArticlesSpider(scrapy.Spider):
         )
 
 
-@shared_task
+@app.task
 def run_spider(max_requests=None):
     process = CrawlerProcess()
     process.crawl(ArticlesSpider, max_requests=max_requests)

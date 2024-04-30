@@ -1,6 +1,6 @@
-from celery import shared_task
+from app_jull.celery import app
 
 
-@shared_task
+@app.task
 def test_func():
     return "tests"

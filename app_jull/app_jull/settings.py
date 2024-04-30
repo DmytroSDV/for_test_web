@@ -124,10 +124,11 @@ STATIC_URL = "static/"
 DEFAULT_AUTO_FIELD = "django.db.models.BigAutoField"
 
 
-# Налаштування Celery
+
 CELERY_BROKER_URL = "redis://localhost:6379/0"
 # CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
-CELERY_RESULT_BACKEND = "django-db"
+CELERY_RESULT_BACKEND = "redis://localhost:6379/0"
+# CELERY_RESULT_BACKEND = "django-db"
 
 # celery setting.
 CELERY_CACHE_BACKEND = "default"
@@ -135,6 +136,6 @@ CELERY_CACHE_BACKEND = "default"
 CACHES = {
     "default": {
         "BACKEND": "django.core.cache.backends.redis.RedisCache",
-        "LOCATION": "redis://localhost:16379/1",
+        "LOCATION": "redis://localhost:6379/1",
     }
 }
